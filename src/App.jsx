@@ -1,5 +1,3 @@
-import Button from '@mui/material/Button'
-
 import { useColorScheme } from '@mui/material/styles'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
@@ -9,6 +7,7 @@ import Box from '@mui/material/Box'
 import LightMode from '@mui/icons-material/LightMode'
 import DarkModeOutlined from '@mui/icons-material/DarkModeOutlined'
 import SettingsBrightness from '@mui/icons-material/SettingsBrightness'
+import Container from '@mui/material/Container'
 
 function ModeSelect() {
   const { mode, setMode } = useColorScheme()
@@ -47,29 +46,41 @@ function ModeSelect() {
   )
 }
 
-function ModeToggle() {
-  const { mode, setMode } = useColorScheme()
-
-  return (
-    <Button
-      onClick={() => {
-        setMode(mode === 'light' ? 'dark' : 'light')
-      }}
-    >
-      {mode === 'light' ? 'Turn dark' : 'Turn light'}
-    </Button>
-  )
-}
-
 function App() {
   return (
-    <>
-      <div>Thanh Nhax</div>
-      <Button variant='contained'>Hello world</Button>
-      <ModeToggle />
-      <hr />
-      <ModeSelect />
-    </>
+    <Container disableGutters maxWidth={false} sx={{ height: '100vh' }}>
+      <Box
+        sx={{
+          backgroundColor: 'primary.light',
+          width: '100%',
+          height: (theme) => theme.trello.appBarHeight,
+          display: 'flex',
+          alignItems: 'center'
+        }}
+      >
+        <ModeSelect />
+      </Box>
+      <Box
+        sx={{
+          backgroundColor: 'primary.dark',
+          width: '100%',
+          height: (theme) => theme.trello.boarBarHeight,
+          display: 'flex',
+          alignItems: 'center'
+        }}
+      >
+        Borad Bar
+      </Box>
+      <Box
+        sx={{
+          backgroundColor: 'primary.light',
+          height: (theme) =>
+            `calc(100vh - ${theme.trello.appBarHeight} - ${theme.trello.boarBarHeight} )`
+        }}
+      >
+        Boad Content
+      </Box>
+    </Container>
   )
 }
 
