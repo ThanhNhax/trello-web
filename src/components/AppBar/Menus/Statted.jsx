@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Button from '@mui/material/Button'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
+import Box from '@mui/material/Box'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 
 const Statted = () => {
@@ -15,8 +16,9 @@ const Statted = () => {
   }
 
   return (
-    <div>
+    <Box>
       <Button
+        sx={{ color: 'white' }}
         id='basic-button-statted'
         aria-controls={open ? 'basic-menu-statted' : undefined}
         aria-haspopup='true'
@@ -39,7 +41,7 @@ const Statted = () => {
         <MenuItem onClick={handleClose}>My account</MenuItem>
         <MenuItem onClick={handleClose}>Logout</MenuItem>
       </Menu>
-    </div>
+    </Box>
   )
 }
 export default Statted

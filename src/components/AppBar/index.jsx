@@ -16,8 +16,14 @@ import Tooltip from '@mui/material/Tooltip'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import Profile from './Menus/Profile'
 import LibraryAddIcon from '@mui/icons-material/LibraryAdd'
+import InputAdornment from '@mui/material/InputAdornment'
+import SearchIcon from '@mui/icons-material/Search'
+import CloseIcon from '@mui/icons-material/Close'
+import { useState } from 'react'
 
 const AppBar = () => {
+  const [searchValue, setSearchValue] = useState('')
+
   return (
     <Box
       sx={{
@@ -28,15 +34,17 @@ const AppBar = () => {
         justifyContent: 'space-between',
         gap: 2,
         paddingX: 2,
-        overflowX: 'auto'
+        overflowX: 'auto',
+        bgcolor: (theme) =>
+          theme.palette.mode === 'dark' ? '#2c3e50' : '#1565c0'
       }}
     >
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-        <AppsIcon sx={{ color: 'primary.main' }} />
+        <AppsIcon sx={{ color: 'white' }} />
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
           <SvgIcon
             fontSize='small'
-            sx={{ color: 'primary.main' }}
+            sx={{ color: 'white' }}
             component={TrelloLogo}
             inheritViewBox
           />
@@ -44,7 +52,7 @@ const AppBar = () => {
             sx={{
               fontSize: '1.2rem',
               fontWeight: 'bold',
-              color: 'primary.main'
+              color: 'white'
             }}
             variant='span'
           >
@@ -57,7 +65,15 @@ const AppBar = () => {
           <Recent />
           <Statted />
           <Templates />
-          <Button variant='outlined' startIcon={<LibraryAddIcon />}>
+          <Button
+            sx={{
+              color: 'white',
+              border: 'none',
+              '&:hover': { border: 'none' }
+            }}
+            variant='outlined'
+            startIcon={<LibraryAddIcon />}
+          >
             Create
           </Button>
         </Box>
@@ -67,20 +83,56 @@ const AppBar = () => {
         <TextField
           id='outlined-search'
           label='Search ...'
-          type='search'
+          type='text'
           size='small'
-          sx={{ maxWidth: '120px' }}
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position='start'>
+                <SearchIcon sx={{ color: 'white' }} />
+              </InputAdornment>
+            ),
+            endAdornment: (
+              <CloseIcon
+                onClick={() => setSearchValue('')}
+                fontSize='small'
+                sx={{
+                  color: searchValue ? 'white' : 'transparent',
+                  cursor: 'pointer'
+                }}
+              />
+            )
+          }}
+          sx={{
+            minWidth: '120px',
+            maxWidth: '180px',
+            '& label': { color: 'white' },
+            '& input': { color: 'white' },
+            '& label.Mui-focused': { color: 'white' },
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: 'white'
+              },
+              '&:hover fieldset': {
+                borderColor: 'white'
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: 'white'
+              }
+            }
+          }}
         />
         <ModeSelect />
 
         <Tooltip title='Notifications'>
-          <Badge sx={{ cursor: 'pointer' }} color='secondary' variant='dot'>
-            <NotificationsNoneIcon sx={{ color: 'primary.main' }} />
+          <Badge sx={{ cursor: 'pointer' }} color='warning' variant='dot'>
+            <NotificationsNoneIcon sx={{ color: 'white' }} />
           </Badge>
         </Tooltip>
 
         <Tooltip title='Notifications'>
-          <HelpOutlineIcon sx={{ cursor: 'pointer', color: 'primary.main' }} />
+          <HelpOutlineIcon sx={{ cursor: 'pointer', color: 'white' }} />
         </Tooltip>
         <Profile />
       </Box>

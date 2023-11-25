@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Button from '@mui/material/Button'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
+import Box from '@mui/material/Box'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 
 const Workspaces = () => {
@@ -15,8 +16,9 @@ const Workspaces = () => {
   }
 
   return (
-    <div>
+    <Box>
       <Button
+        sx={{ color: 'white' }}
         id='basic-button-workspaces'
         aria-controls={open ? 'basic-menu-workspaces' : undefined}
         aria-haspopup='true'
@@ -39,7 +41,7 @@ const Workspaces = () => {
         <MenuItem onClick={handleClose}>My account</MenuItem>
         <MenuItem onClick={handleClose}>Logout</MenuItem>
       </Menu>
-    </div>
+    </Box>
   )
 }
 export default Workspaces
