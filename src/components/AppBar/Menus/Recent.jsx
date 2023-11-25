@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Button from '@mui/material/Button'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
+import Box from '@mui/material/Box'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 
 const Recent = () => {
@@ -15,8 +16,9 @@ const Recent = () => {
   }
 
   return (
-    <div>
+    <Box>
       <Button
+        sx={{ color: 'white' }}
         id='basic-button-recent'
         aria-controls={open ? 'basic-menu-recent' : undefined}
         aria-haspopup='true'
@@ -39,7 +41,7 @@ const Recent = () => {
         <MenuItem onClick={handleClose}>My account</MenuItem>
         <MenuItem onClick={handleClose}>Logout</MenuItem>
       </Menu>
-    </div>
+    </Box>
   )
 }
 export default Recent

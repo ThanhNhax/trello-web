@@ -29,7 +29,7 @@ const Profile = () => {
           <Avatar
             alt='thanhnhaxdev'
             src='https://i.redd.it/ahipst3tq4j91.jpg'
-            sx={{ width: 30, height: 30 }}
+            sx={{ width: 36, height: 36 }}
           />
         </IconButton>
       </Tooltip>
