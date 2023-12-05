@@ -16,8 +16,9 @@ import Button from '@mui/material/Button'
 import DragHandle from '@mui/icons-material/DragHandle'
 
 import ListCards from './ListCards/ListCards'
+import { mapOrder } from '~/utils/sorts'
 
-const Column = () => {
+const Column = ({ column }) => {
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
@@ -26,6 +27,8 @@ const Column = () => {
   const handleClose = () => {
     setAnchorEl(null)
   }
+
+  const orderCards = mapOrder(column?.cards, column?.cardOrderIds, '_id')
   return (
     <Box
       sx={{
@@ -58,7 +61,7 @@ const Column = () => {
             cursor: 'pointer'
           }}
         >
-          Cloumn Title
+          {column?.title}
         </Typography>
         <Box>
           <Tooltip title='More options'>
@@ -109,7 +112,7 @@ const Column = () => {
         </Box>
       </Box>
       {/* List card  */}
-      <ListCards />
+      <ListCards cards={orderCards} />
       {/* footer */}
       <Box
         sx={{

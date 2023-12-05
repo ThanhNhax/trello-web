@@ -10,6 +10,7 @@ import AvatarGroup from '@mui/material/AvatarGroup'
 import Tooltip from '@mui/material/Tooltip'
 import Button from '@mui/material/Button'
 import PersonAddIcon from '@mui/icons-material/PersonAdd'
+import { capitalizeFirstLetter } from '~/utils/formatters'
 
 const MENU_STYPE = {
   color: 'white',
@@ -25,7 +26,7 @@ const MENU_STYPE = {
   }
 }
 
-const BoardBar = () => {
+const BoardBar = ({ board }) => {
   return (
     <Box
       sx={{
@@ -46,13 +47,13 @@ const BoardBar = () => {
           sx={MENU_STYPE}
           clickable
           icon={<DashboardIcon />}
-          label='ThanhNhax'
+          label={board?.title}
         />
         <Chip
           sx={MENU_STYPE}
           clickable
           icon={<VpnLockIcon />}
-          label='Public/Private Workspace'
+          label={capitalizeFirstLetter(board?.type)}
         />
         <Chip
           sx={MENU_STYPE}
