@@ -8,24 +8,12 @@ import AtmOutlined from '@mui/icons-material/AtmOutlined'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 
-const Card = ({ temporaryHideMedia }) => {
-  if (temporaryHideMedia) {
+const Card = ({ card }) => {
+  const shouldShowCardAction = () => {
     return (
-      <MuiCard
-        sx={{
-          cursor: 'pointer',
-          boxShadow: '0 1px 1px rgba(0,0,0,0.2)',
-          overflow: 'unset'
-        }}
-      >
-        <CardContent
-          sx={{
-            p: 1.5
-          }}
-        >
-          <Typography>Card Test 01</Typography>
-        </CardContent>
-      </MuiCard>
+      !!card?.comments.length ||
+      !!card?.memberIds.length ||
+      !!card?.attachments.length
     )
   }
   return (
@@ -33,32 +21,41 @@ const Card = ({ temporaryHideMedia }) => {
       sx={{
         cursor: 'pointer',
         boxShadow: '0 1px 1px rgba(0,0,0,0.2)',
-        overflow: 'unset'
+        overflow: 'unset',
+        '& .css-19joarl-MuiCardContent-root:last-child': {
+          pb: '12px'
+        }
       }}
     >
-      <CardMedia
-        sx={{ height: 140 }}
-        image='https://th.bing.com/th/id/OIP.jCzbVfRsaPRNshaO2Pf0-AHaF9?w=227&h=181&c=7&r=0&o=5&dpr=1.3&pid=1.7'
-        title='green iguana'
-      />
+      {card?.cover && <CardMedia sx={{ height: 140 }} image={card?.cover} />}
+
       <CardContent
         sx={{
           p: 1.5
         }}
       >
-        <Typography>ThanhNhax</Typography>
+        <Typography>{card?.title}</Typography>
       </CardContent>
-      <CardActions sx={{ p: '0 4px 8px' }}>
-        <Button size='small' startIcon={<GroupIcon />}>
-          20
-        </Button>
-        <Button size='small' startIcon={<ModeComment />}>
-          10
-        </Button>
-        <Button size='small' startIcon={<AtmOutlined />}>
-          15
-        </Button>
-      </CardActions>
+      {shouldShowCardAction() && (
+        <CardActions sx={{ p: '0 4px 8px' }}>
+          {!!card?.memberIds.length && (
+            <Button size='small' startIcon={<GroupIcon />}>
+              {card?.memberIds.length}
+            </Button>
+          )}
+
+          {!!card?.comments.length && (
+            <Button size='small' startIcon={<ModeComment />}>
+              {card?.comments.length}
+            </Button>
+          )}
+          {!!card?.attachments.length && (
+            <Button size='small' startIcon={<AtmOutlined />}>
+              {card?.attachments.length}
+            </Button>
+          )}
+        </CardActions>
+      )}
     </MuiCard>
   )
 }
