@@ -7,8 +7,26 @@ import ModeComment from '@mui/icons-material/ModeComment'
 import AtmOutlined from '@mui/icons-material/AtmOutlined'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
+import { useSortable } from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
 
 const Card = ({ card }) => {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    isDragging,
+    transform,
+    transition
+  } = useSortable({ id: card._id, data: { ...card } })
+
+  const dndKitCardStyle = {
+    touchActive: 'none',
+    transform: CSS.Translate.toString(transform),
+    transition,
+    opacity: isDragging ? 0.7 : undefined
+  }
+
   const shouldShowCardAction = () => {
     return (
       !!card?.comments.length ||
@@ -18,6 +36,10 @@ const Card = ({ card }) => {
   }
   return (
     <MuiCard
+      ref={setNodeRef}
+      style={dndKitCardStyle}
+      {...attributes}
+      {...listeners}
       sx={{
         cursor: 'pointer',
         boxShadow: '0 1px 1px rgba(0,0,0,0.2)',
