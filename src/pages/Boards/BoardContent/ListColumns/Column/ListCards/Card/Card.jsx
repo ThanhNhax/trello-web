@@ -24,14 +24,15 @@ const Card = ({ card }) => {
     touchActive: 'none',
     transform: CSS.Translate.toString(transform),
     transition,
-    opacity: isDragging ? 0.7 : undefined
+    opacity: isDragging ? 0.7 : undefined,
+    border: isDragging ? '1px solid #2ecc71' : undefined
   }
 
   const shouldShowCardAction = () => {
     return (
-      !!card?.comments.length ||
-      !!card?.memberIds.length ||
-      !!card?.attachments.length
+      !!card?.comments?.length ||
+      !!card?.memberIds?.length ||
+      !!card?.attachments?.length
     )
   }
   return (
@@ -46,7 +47,8 @@ const Card = ({ card }) => {
         overflow: 'unset',
         '& .css-19joarl-MuiCardContent-root:last-child': {
           pb: '12px'
-        }
+        },
+        display: card?.FE_PlanceholderCard ? 'none' : 'block'
       }}
     >
       {card?.cover && <CardMedia sx={{ height: 140 }} image={card?.cover} />}
