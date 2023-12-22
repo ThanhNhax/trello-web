@@ -224,13 +224,7 @@ const BoardContent = ({ board }) => {
             nextActiveColumn.cards = nextActiveColumn.cards.filter(
               (card) => card._id !== activeDraggingCardId
             )
-            // Thêm cái card rỗng vào mang rỗng
-            // if (isEmpty(nextActiveColumn.cards)) {
-            //   console.log('card cuoi cung do column bi keo', nextActiveColumn)
-            //   nextActiveColumn.cards = [
-            //     generatePlaceholderCard(nextActiveColumn)
-            //   ]
-            // }
+
             // Cập nhật lại mảng cardOrderIds cho chuẩn data
             nextActiveColumn.cardOrderIds = nextActiveColumn.cards.map(
               (card) => card._id

@@ -1,25 +1,30 @@
 export const mockData = {
   board: {
     _id: 'board-id-01',
-    title: 'TrungQuanDev MERN Stack Board',
+    title: 'Thanh Nhax Board',
     description: 'Pro MERN stack Course',
     type: 'public', // 'private'
     ownerIds: [], // Những users là Admin của board
     memberIds: [], // Những users là member bình thường của board
-    columnOrderIds: ['column-id-03', 'column-id-01', 'column-id-02'], // Thứ tự sắp xếp / vị trí của các Columns trong 1 boards
+    columnOrderIds: [
+      'column-id-01',
+      'column-id-02',
+      'column-id-03',
+      'column-id-04'
+    ], // Thứ tự sắp xếp / vị trí của các Columns trong 1 boards
     columns: [
       {
         _id: 'column-id-01',
         boardId: 'board-id-01',
         title: 'To Do Column 01',
         cardOrderIds: [
-          'card-id-07',
+          'card-id-01',
           'card-id-02',
           'card-id-03',
           'card-id-04',
           'card-id-05',
           'card-id-06',
-          'card-id-01'
+          'card-id-07'
         ],
         cards: [
           {
@@ -29,7 +34,7 @@ export const mockData = {
             title: 'Title of card 01',
             description: 'Markdown Syntax (sẽ ở khóa nâng cao nhé)',
             cover:
-              'https://trungquandev.com/wp-content/uploads/2022/07/fair-mern-stack-advanced-banner-trungquandev.jpg',
+              'https://blog.trello.com/hs-fs/hubfs/Trello-Like-a-Pro-final.png?width=3600&name=Trello-Like-a-Pro-final.png',
             memberIds: ['test-user-id-01'],
             comments: ['test comment 01', 'test comment 02'],
             attachments: [

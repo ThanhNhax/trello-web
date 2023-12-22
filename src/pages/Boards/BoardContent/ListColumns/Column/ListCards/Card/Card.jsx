@@ -48,7 +48,10 @@ const Card = ({ card }) => {
         '& .css-19joarl-MuiCardContent-root:last-child': {
           pb: '12px'
         },
-        display: card?.FE_PlanceholderCard ? 'none' : 'block'
+        // dùng Diisplay thì không kéo được card qua column rỗng
+        // display: card?.FE_PlanceholderCard ? 'none' : 'block'
+        //  set height :0 px thì kéo được
+        height: card?.FE_PlanceholderCard && '0px'
       }}
     >
       {card?.cover && <CardMedia sx={{ height: 140 }} image={card?.cover} />}
